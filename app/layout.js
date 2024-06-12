@@ -1,3 +1,4 @@
+import AppLayout from "./_components/layout/AppLayout";
 import { yekanBakh } from "./_utils/fonts";
 import "./globals.css";
 
@@ -9,7 +10,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="fa" dir="rtl">
-      <body className={yekanBakh.className}>{children}</body>
+      <body className={yekanBakh.className}>
+        {<AppLayout>{children}</AppLayout>}
+      </body>
     </html>
   );
 }
