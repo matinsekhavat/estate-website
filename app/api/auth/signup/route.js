@@ -17,6 +17,15 @@ export async function POST(req) {
         }
       );
     }
+
+    //check is user existed?
+    const isUserExisting = await userModel.findOne({ email });
+    if (isUserExisting) {
+      return NextResponse.json(
+        { error: "حساب کاربری با این ایمیل از قبل ایجاد شده است" },
+        { status: 422 }
+      );
+    }
   } catch (error) {
     console.log(error);
     return NextResponse.json(
