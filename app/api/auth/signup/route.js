@@ -28,6 +28,14 @@ export async function POST(req) {
     }
 
     const hashedpassword = await hashPassword(password);
+
+    //create new user
+    const newUser = await userModel.create({
+      email,
+      password: hashedpassword,
+    });
+
+    console.log(newUser);
   } catch (error) {
     console.log(error);
     return NextResponse.json(
