@@ -6,6 +6,6 @@ export async function verifyPassword(password, hashedPassword) {
 }
 
 export async function hashPassword(password) {
-  const password = await hash(password, 12);
-  return password;
+  const hashPassword = await hash(password, 12);
+  return hashPassword;
 }
