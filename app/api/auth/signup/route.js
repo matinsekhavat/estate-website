@@ -26,6 +26,8 @@ export async function POST(req) {
         { status: 422 }
       );
     }
+
+    const hashedpassword = await hashPassword(password);
   } catch (error) {
     console.log(error);
     return NextResponse.json(
