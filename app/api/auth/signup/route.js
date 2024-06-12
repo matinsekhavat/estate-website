@@ -35,7 +35,7 @@ export async function POST(req) {
       password: hashedpassword,
     });
 
-    console.log(newUser);
+    return NextResponse.json({ message: "حساب شما با موفقیت ثبت نام شد" });
   } catch (error) {
     console.log(error);
     return NextResponse.json(
