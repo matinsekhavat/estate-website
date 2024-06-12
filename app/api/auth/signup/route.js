@@ -5,6 +5,18 @@ import { hashPassword } from "@/app/_utils/auth";
 
 export async function POST(req) {
   try {
+    await connectToDb();
+    const body = req.json();
+    const { email, password } = body;
+    //validate Data
+    if (!email.trim() || !password.trim()) {
+      NextResponse.json(
+        { error: "لطفا اطلاعات معتبر وارد نمایید." },
+        {
+          status: 422,
+        }
+      );
+    }
   } catch (error) {
     console.log(error);
     return NextResponse.json(
