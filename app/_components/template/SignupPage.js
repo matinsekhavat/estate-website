@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import styles from "./SignupPage.module.css";
+import Link from "next/link";
 
 function SignupPage() {
   const [email, setEmail] = useState("");
@@ -28,7 +29,12 @@ function SignupPage() {
           value={rePassword}
           onChange={(e) => setRePassword(e.target.value)}
         />
+        <button type="submit">ثبت نام</button>
       </form>
+      <p>
+        در املاک برنگی اکانت دارید؟
+        <Link href="/signin">ورود</Link>
+      </p>
     </div>
   );
 }
