@@ -2,11 +2,40 @@
 import { useState } from "react";
 import styles from "./SignupPage.module.css";
 import Link from "next/link";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
+  const router = useRouter();
+  async function signupHandler(e) {
+    e.preventDefault();
+    if (password !== rePassword) {
+      toast.error("تکرار رمز عبور شما برابر رمز اولیه نمیباشد");
+      return null;
+    }
+    if (!email.trim() || !password.trim() || !rePassword.trim()) {
+      toast.error("تمامی فیلد هارو لطفا پر کنید.");
+    }
+    const res = await fetch("/api/auth/signup", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+    });
+    const data = await res.json();
+    if (res.status === 201) {
+      toast.success("حساب شما با موفقیت ایجاد شد");
+      router.push("/signin");
+    } else if (res.status === 422) {
+      toast.error("همچین کاربری قبلا در سایت ثبت نام کرده است");
+    } else {
+      toast.error(data?.error);
+    }
+  }
   return (
     <div className={styles.form}>
       <h4>فرم ثبت نام</h4>
@@ -29,7 +58,9 @@ function SignupPage() {
           value={rePassword}
           onChange={(e) => setRePassword(e.target.value)}
         />
-        <button type="submit">ثبت نام</button>
+        <button type="submit" onClick={signupHandler}>
+          ثبت نام
+        </button>
       </form>
       <p>
         در املاک برنگی اکانت دارید؟
