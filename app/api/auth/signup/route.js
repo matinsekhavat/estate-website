@@ -39,7 +39,10 @@ export async function POST(req) {
       password: hashedPassword,
     });
 
-    return NextResponse.json({ message: "حساب شما با موفقیت ثبت نام شد" });
+    return NextResponse.json(
+      { message: "حساب شما با موفقیت ثبت نام شد" },
+      { status: 201 }
+    );
   } catch (error) {
     console.log(error);
     return NextResponse.json(
