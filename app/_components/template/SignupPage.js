@@ -4,14 +4,17 @@ import styles from "./SignupPage.module.css";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { ThreeDots } from "react-loader-spinner";
 
 function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   async function signupHandler(e) {
     e.preventDefault();
+    setIsLoading(true);
     if (password !== rePassword) {
       toast.error("تکرار رمز عبور شما برابر رمز اولیه نمیباشد");
       return null;
@@ -29,12 +32,13 @@ function SignupPage() {
     const data = await res.json();
     if (res.status === 201) {
       toast.success("حساب شما با موفقیت ایجاد شد");
-      router.push("/signin");
+      // router.push("/signin");
     } else if (res.status === 422) {
       toast.error("همچین کاربری قبلا در سایت ثبت نام کرده است");
     } else {
-      toast.error(data?.error);
+      // toast.error(data?.error);
     }
+    setIsLoading(false);
   }
   return (
     <div className={styles.form}>
@@ -58,9 +62,18 @@ function SignupPage() {
           value={rePassword}
           onChange={(e) => setRePassword(e.target.value)}
         />
-        <button type="submit" onClick={signupHandler}>
-          ثبت نام
-        </button>
+        {!isLoading && (
+          <button type="submit" onClick={signupHandler}>
+            ثبت نام
+          </button>
+        )}
+        <ThreeDots
+          color="#304ffe"
+          height={45}
+          ariaLabel="three-dots-loading"
+          visible={isLoading}
+          wrapperStyle={{ margin: "auto" }}
+        />
       </form>
       <p>
         در املاک برنگی اکانت دارید؟
