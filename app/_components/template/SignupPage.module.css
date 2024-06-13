@@ -34,7 +34,8 @@
   margin-bottom: 40px;
   width: 250px;
   border: 1px #304ffe dashed;
-  color: grey;
+  color: rgb(19, 17, 17);
+  font-weight: 600;
   border-radius: 5px;
   padding: 10px;
   direction: ltr !important;
