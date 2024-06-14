@@ -1,7 +1,8 @@
 import React from "react";
+import SigninPage from "../_components/template/SigninPage";
 
 function page() {
-  return <div>page</div>;
+  return <SigninPage />;
 }
 
 export default page;
