@@ -36,7 +36,7 @@ function SignupPage() {
     setIsLoading(false);
     if (res.status === 201) {
       toast.success("حساب شما با موفقیت ایجاد شد");
-      // router.push("/signin");
+      router.push("/signin");
     } else if (res.status === 422) {
       toast.error("همچین کاربری قبلا در سایت ثبت نام کرده است");
     } else {
@@ -81,7 +81,8 @@ function SignupPage() {
         )}
       </form>
       <p>
-        در املاک برنگی اکانت دارید؟
+        {" "}
+        اکانت دارید؟
         <Link href="/signin">ورود</Link>
       </p>
     </div>
