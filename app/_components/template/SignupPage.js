@@ -17,10 +17,13 @@ function SignupPage() {
     setIsLoading(true);
     if (password !== rePassword) {
       toast.error("تکرار رمز عبور شما برابر رمز اولیه نمیباشد");
+      await new Promise((res) => setTimeout(res, 1000));
+      setIsLoading(false);
       return null;
     }
     if (!email.trim() || !password.trim() || !rePassword.trim()) {
       toast.error("تمامی فیلد هارو لطفا پر کنید.");
+      return null;
     }
     const res = await fetch("/api/auth/signup", {
       headers: {
@@ -30,6 +33,7 @@ function SignupPage() {
       body: JSON.stringify({ email, password }),
     });
     const data = await res.json();
+    setIsLoading(false);
     if (res.status === 201) {
       toast.success("حساب شما با موفقیت ایجاد شد");
       // router.push("/signin");
@@ -38,7 +42,6 @@ function SignupPage() {
     } else {
       // toast.error(data?.error);
     }
-    setIsLoading(false);
   }
   return (
     <div className={styles.form}>
@@ -67,13 +70,15 @@ function SignupPage() {
             ثبت نام
           </button>
         )}
-        <ThreeDots
-          color="#304ffe"
-          height={45}
-          ariaLabel="three-dots-loading"
-          visible={isLoading}
-          wrapperStyle={{ margin: "auto" }}
-        />
+        {isLoading && (
+          <ThreeDots
+            color="#304ffe"
+            height={45}
+            ariaLabel="three-dots-loading"
+            visible={isLoading}
+            wrapperStyle={{ margin: "auto" }}
+          />
+        )}
       </form>
       <p>
         در املاک برنگی اکانت دارید؟
