@@ -11,24 +11,39 @@ const authOptions = {
       async authorize(credentials) {
         const { email, password } = credentials;
 
-        try {
-          await connectToDb();
-        } catch (error) {
-          throw new Error("error in auth", error.message);
-        }
-
         if (!email || !password) {
           throw new Error("اطلاعات معتبر وارد نمایید.");
         }
 
-        const user = userModel.findOne({ email });
+        try {
+          await connectToDb();
+        } catch (error) {
+          console.error("Error connecting to database:", error);
+          throw new Error("Internal server error.");
+        }
+
+        let user;
+        try {
+          user = await userModel.findOne({ email });
+        } catch (error) {
+          console.error("Error fetching user:", error);
+          throw new Error("Internal server error.");
+        }
+
         if (!user) {
           throw new Error("لطفا ابتدا ثبت نام نمایید");
         }
 
-        const isValid = await verifyPassword(password, user.password);
+        let isValid;
+        try {
+          isValid = await verifyPassword(password, user.password);
+        } catch (error) {
+          console.error("Error verifying password:", error);
+          throw new Error("Internal server error.");
+        }
 
         if (!isValid) throw new Error("رمز یا ایمیل اشتباه است.");
+
         return { email };
       },
     }),
