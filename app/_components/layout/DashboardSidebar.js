@@ -8,12 +8,12 @@ import Link from "next/link";
 import LogoutButton from "../module/LogoutButton";
 async function DashboardSidebar({ children }) {
   const session = await getServerSession(authOptions);
-  if (!session) redirect("/");
+
   return (
     <div className={styles.container}>
       <div className={styles.sidebar}>
         <CgProfile />
-        <p>{session.user.email}</p>
+        <p>{session?.user.email}</p>
         <span></span>
         <Link href="/dashboard">حساب کاربری</Link>
         <Link href="/dashboardmy-profiles">آگهی های من</Link>
