@@ -6,6 +6,8 @@ import { redirect } from "next/navigation";
 import { CgProfile } from "react-icons/cg";
 import Link from "next/link";
 async function DashboardSidebar({ children }) {
+  const session = await getServerSession(authOptions);
+  if (!session) redirect("/");
   return (
     <div className={styles.container}>
       <div className={styles.sidebar}>
