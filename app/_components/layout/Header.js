@@ -7,7 +7,6 @@ import { useSession } from "next-auth/react";
 import { FaUserAlt } from "react-icons/fa";
 function Header() {
   const { data: session, status } = useSession();
-  console.log(session, status);
   return (
     <header className={styles.header}>
       <div>
