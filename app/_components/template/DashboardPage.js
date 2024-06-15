@@ -9,7 +9,7 @@ function DashboardPage({ timeStamps }) {
       <p>آگهی های خود را ثبت کنید تا هزاران نفر آن را مشاهده کنند.</p>
       <div className={styles.createdAt}>
         <p>تاریخ عضویت:</p>
-        <span>x</span>
+        <span>{new Date(timeStamps).toLocaleDateString("fa")}</span>
       </div>
     </div>
   );
