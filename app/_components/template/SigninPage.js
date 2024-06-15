@@ -34,6 +34,7 @@ function SigninPage() {
         // router.push("/signin");
       } else {
         router.push("/");
+        toast.success("خوش آمدید");
       }
     } catch (error) {
       throw new Error(error.message);
