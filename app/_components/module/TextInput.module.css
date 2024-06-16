@@ -3,11 +3,12 @@
   margin-bottom: 40px;
   width: 300px;
   border: 1px #304ffe dashed;
-  color: grey;
+  color: rgb(27, 19, 19);
   border-radius: 5px;
   padding: 10px;
   font-size: 1rem;
   height: 40px;
+  font-weight: 200;
 }
 
 .container input:focus,
