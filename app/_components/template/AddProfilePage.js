@@ -2,6 +2,7 @@
 import styles from "@/app/_components/template/AddProfilePage.module.css";
 import TextInput from "../module/TextInput";
 import { useState } from "react";
+import RadioList from "../module/RadioList";
 function AddProfilePage() {
   const [profile, setProfile] = useState({
     title: "",
@@ -55,6 +56,7 @@ function AddProfilePage() {
         setProfile={setProfile}
         name="realState"
       />
+      <RadioList profile={profile} setProfile={setProfile} />
     </div>
   );
 }
