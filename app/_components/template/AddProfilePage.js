@@ -3,6 +3,8 @@ import styles from "@/app/_components/template/AddProfilePage.module.css";
 import TextInput from "../module/TextInput";
 import { useState } from "react";
 import RadioList from "../module/RadioList";
+import TextList from "../module/TextList";
+
 function AddProfilePage() {
   const [profile, setProfile] = useState({
     title: "",
@@ -16,11 +18,12 @@ function AddProfilePage() {
     rules: [],
     amenities: [],
   });
+
   return (
     <div>
       <TextInput
         isTextArea={false}
-        title=" عنوان آگهی"
+        title="عنوان آگهی"
         profile={profile}
         setProfile={setProfile}
         name="title"
@@ -31,13 +34,13 @@ function AddProfilePage() {
         profile={profile}
         setProfile={setProfile}
         name="description"
-      />{" "}
+      />
       <TextInput
         title="آدرس"
         profile={profile}
         setProfile={setProfile}
         name="location"
-      />{" "}
+      />
       <TextInput
         title="شماره تماس "
         profile={profile}
@@ -49,7 +52,7 @@ function AddProfilePage() {
         profile={profile}
         setProfile={setProfile}
         name="price"
-      />{" "}
+      />
       <TextInput
         title="بنگاه"
         profile={profile}
@@ -57,6 +60,12 @@ function AddProfilePage() {
         name="realState"
       />
       <RadioList profile={profile} setProfile={setProfile} />
+      <TextList
+        profile={profile}
+        setProfile={setProfile}
+        type="amenities"
+        title="امکانات رفاهی"
+      />
     </div>
   );
 }
