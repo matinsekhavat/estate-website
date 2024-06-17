@@ -4,6 +4,7 @@ import TextInput from "../module/TextInput";
 import { useState } from "react";
 import RadioList from "../module/RadioList";
 import TextList from "../module/TextList";
+import CustomDate from "../module/CustomDate";
 
 function AddProfilePage() {
   const [profile, setProfile] = useState({
@@ -72,6 +73,7 @@ function AddProfilePage() {
         type="rules"
         title="قوانین"
       />
+      <CustomDate profile={profile} setProfile={setProfile} />
     </div>
   );
 }
