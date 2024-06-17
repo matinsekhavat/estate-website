@@ -24,6 +24,8 @@
   transition: all ease-in 0.1s;
   cursor: pointer;
   padding: 10px;
+  width: 100%;
+  margin-top: 2rem;
 }
 
 .submit:hover {
