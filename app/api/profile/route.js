@@ -19,7 +19,7 @@ export async function POST(req) {
       category,
       amenities,
       rules,
-    } = await req.json();
+    } = body;
     const session = await getServerSession(req); // instead of authOptions we say req
     if (!session) {
       return NextResponse.json(
@@ -29,7 +29,7 @@ export async function POST(req) {
     }
 
     const user = userModel.findOne({ email: session.user.email });
-
+    console.log(user, session);
     if (!user) {
       return NextResponse.json(
         { error: "همچین کاربری یافت نشد" },
