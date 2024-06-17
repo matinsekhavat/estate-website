@@ -34,6 +34,22 @@ export async function POST(req) {
         { status: 404 }
       );
     }
+
+    if (
+      !title ||
+      !location ||
+      !description ||
+      !phone ||
+      !realState ||
+      !price ||
+      !constructionDate ||
+      !category
+    ) {
+      return NextResponse.json(
+        { error: "لطفا اطلاعات معتبر وارد کنید" },
+        { status: 400 }
+      );
+    }
   } catch (error) {
     return NextResponse.json({ error: "مشکلی در سرور هست" }, { status: 500 });
   }
