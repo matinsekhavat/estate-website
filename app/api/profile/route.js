@@ -1,5 +1,7 @@
+import profileModel from "@/app/_models/Profile";
 import userModel from "@/app/_models/User";
 import connectToDb from "@/app/_utils/connectToDb";
+import { Types } from "mongoose";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 export async function POST(req) {
@@ -50,6 +52,25 @@ export async function POST(req) {
         { status: 400 }
       );
     }
+
+    //create profile
+    const newProfile = await profileModel.create({
+      title,
+      description,
+      location,
+      phone,
+      realState,
+      constructionDate,
+      amenities,
+      rules,
+      category,
+      price: +price,
+      userId: new Types.ObjectId(user._id),
+    });
+    return NextResponse.json(
+      { message: "آگهی با موفقیت ثبت شد" },
+      { status: 201 }
+    );
   } catch (error) {
     return NextResponse.json({ error: "مشکلی در سرور هست" }, { status: 500 });
   }
