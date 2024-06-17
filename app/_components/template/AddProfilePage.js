@@ -20,6 +20,10 @@ function AddProfilePage() {
     amenities: [],
   });
 
+  function submitHandler() {
+    console.log(profile);
+  }
+
   return (
     <div>
       <TextInput
@@ -74,6 +78,11 @@ function AddProfilePage() {
         title="قوانین"
       />
       <CustomDate profile={profile} setProfile={setProfile} />
+      <div>
+        <button className={styles.submit} onClick={submitHandler}>
+          ثبت آگهی
+        </button>
+      </div>
     </div>
   );
 }
