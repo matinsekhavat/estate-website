@@ -65,6 +65,12 @@ function AddProfilePage() {
         setProfile={setProfile}
         type="amenities"
         title="امکانات رفاهی"
+      />{" "}
+      <TextList
+        profile={profile}
+        setProfile={setProfile}
+        type="rules"
+        title="قوانین"
       />
     </div>
   );
