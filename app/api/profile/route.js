@@ -1,3 +1,4 @@
+import userModel from "@/app/_models/User";
 import connectToDb from "@/app/_utils/connectToDb";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
@@ -22,6 +23,15 @@ export async function POST(req) {
       return NextResponse.json(
         { error: "ابتدا وارد حساب خود شوید" },
         { status: 401 }
+      );
+    }
+
+    const user = userModel.findOne({ email: session.user.email });
+
+    if (!user) {
+      return NextResponse.json(
+        { error: "همچین کاربری یافت نشد" },
+        { status: 404 }
       );
     }
   } catch (error) {
