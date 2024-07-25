@@ -28,7 +28,7 @@ export async function POST(req) {
       );
     }
 
-    const user = userModel.findOne({ email: session.user.email });
+    const user = await userModel.findOne({ email: session.user.email });
     console.log(user, session);
     if (!user) {
       return NextResponse.json(
