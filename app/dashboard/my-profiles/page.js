@@ -4,6 +4,7 @@ import React from "react";
 import connectToDb from "@/app/_utils/connectToDb";
 import User from "@/app/_models/User";
 import { redirect } from "next/dist/server/api-utils";
+import MyProfilesPage from "@/app/_components/template/MyProfilesPage";
 
 async function MyProfiles() {
   await connectToDb();
@@ -22,7 +23,7 @@ async function MyProfiles() {
     },
   ]);
   console.log(user.profiles);
-  return <div>MyProfiles</div>;
+  return <MyProfilesPage profiles={user.profiles || []} />;
 }
 
 export default MyProfiles;
