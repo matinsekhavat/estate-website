@@ -44,7 +44,7 @@ const schema = mongoose.Schema(
       default: [],
     },
     userId: {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Types.ObjectId,
       ref: "User",
     },
   },
