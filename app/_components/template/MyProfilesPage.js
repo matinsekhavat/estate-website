@@ -1,6 +1,6 @@
 import React from "react";
-
-function MyProfilesPage() {
+import styles from "./MyProfilesPage.module.css";
+function MyProfilesPage({ profiles }) {
   return <div>MyProfilesPage</div>;
 }
 
