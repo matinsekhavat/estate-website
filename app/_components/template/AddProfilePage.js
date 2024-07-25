@@ -5,6 +5,7 @@ import { useState } from "react";
 import RadioList from "../module/RadioList";
 import TextList from "../module/TextList";
 import CustomDate from "../module/CustomDate";
+import toast from "react-hot-toast";
 
 function AddProfilePage() {
   const [profile, setProfile] = useState({
@@ -28,6 +29,11 @@ function AddProfilePage() {
         body: JSON.stringify(profile),
       });
       const data = await res.json();
+      if (data.error) {
+        toast.error(data.error);
+      } else {
+        toast.success("Profile added successfully");
+      }
     } catch (error) {
       console.error("Error submitting profile:", error);
     }
