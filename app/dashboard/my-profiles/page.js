@@ -10,7 +10,7 @@ async function MyProfiles() {
   const session = await getServerSession(authOptions);
   if (!session) redirect("/signin");
   //   this code check auth
-  const user = await User.aggregate([
+  const [user] = await User.aggregate([
     { $match: { email: session.user.email } }, //find this user then {}2
     {
       $lookup: {
@@ -21,7 +21,7 @@ async function MyProfiles() {
       },
     },
   ]);
-  console.log(user[0].profiles);
+  console.log(user.profiles);
   return <div>MyProfiles</div>;
 }
 
