@@ -1,8 +1,7 @@
-import React from "react";
-
+import styles from "./Card.module.css";
 function Card({ profile }) {
   const { category, location, price, title } = profile;
-  return <div>Card</div>;
+  return <div>{title}</div>;
 }
 
 export default Card;
