@@ -6,7 +6,10 @@ function MyProfilesPage({ profiles }) {
     <div>
       {!profiles.length && <p className={styles.text}>هیچ آکهی وجود ندارد</p>}
       {profiles.map((profile) => (
-        <DashboardCard key={profile._id} profile={profile} />
+        <DashboardCard
+          key={profile._id}
+          profile={JSON.parse(JSON.stringify(profile))}
+        />
       ))}
     </div>
   );
