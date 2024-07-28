@@ -1,4 +1,4 @@
-import DashboadCard from "../module/DashboadCard";
+import DashboardCard from "../module/DashboardCard";
 import styles from "./MyProfilesPage.module.css";
 function MyProfilesPage({ profiles }) {
   console.log(profiles);
@@ -6,7 +6,7 @@ function MyProfilesPage({ profiles }) {
     <div>
       {!profiles.length && <p className={styles.text}>هیچ آکهی وجود ندارد</p>}
       {profiles.map((profile) => (
-        <DashboadCard key={profile._id} profile={profile} />
+        <DashboardCard key={profile._id} profile={profile} />
       ))}
     </div>
   );
